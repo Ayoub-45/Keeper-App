@@ -1,8 +1,9 @@
-export function Note(){
+
+export function Note(props){
     return(
         <div className="note">
-            <h1>Title</h1>
-            <p>paragraph</p>
+            <h1>{props.title}</h1>
+            <p>{props.content}</p>
         </div>
     )
 }

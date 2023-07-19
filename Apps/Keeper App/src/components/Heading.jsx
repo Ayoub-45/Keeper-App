@@ -3,7 +3,7 @@ export function Heading(){
     return(
         <div>
             <header>
-               <h1>Hello world !</h1> 
+               <h1>Note</h1> 
             </header>
         </div>
     )
