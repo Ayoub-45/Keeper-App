@@ -1,10 +1,13 @@
 import React,{useState}from "react";
-
+import AddIcon from '@mui/icons-material/Add';
+import { Fab } from "@mui/material";
+import { Zoom } from '@mui/material';
 export function CreateArea({setNotes}) {
     const [note,setNote]=useState({
         title:"",
         content:""
     });
+    const [show,setShow]=useState(false)
     function handleChange(e){
         const {name,value}=e.target
         setNote(prevNote=>{
@@ -39,13 +42,20 @@ export function CreateArea({setNotes}) {
          })
         
     }
-    
+    function handleClick(){
+        setShow((prevShow)=>{
+            return !prevShow
+        })
+    }    
   return (
     <div>
-      <form onSubmit={(e)=>{e.preventDefault()}}>
-        <input name="title" placeholder="Title" onChange={handleChange} value={note.title} />
-        <textarea name="content" placeholder="Take a note..." rows="3"onChange={handleChange} value={note.content} />
-        <button onClick={()=>addNote(note)}>Add</button>
+      <form className="create-note" onSubmit={(e)=>{e.preventDefault()}}>
+        {show &&<input name="title" placeholder="Title" onChange={handleChange} value={note.title} />}
+        
+        <textarea onClick={handleClick} name="content" placeholder="Take a note..." rows={show?"3":"1"}onChange={handleChange} value={note.content} />
+        <Zoom in={show}>
+        <Fab color="black" onClick={()=>addNote(note)}><AddIcon/></Fab>
+        </Zoom>
       </form>
     </div>
   );
